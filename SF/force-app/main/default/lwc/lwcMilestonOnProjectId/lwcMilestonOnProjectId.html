@@ -1,0 +1,31 @@
+<template>
+    <template if:true={showData}>
+        <lightning-card title="Milestones Info" icon-name="standard:contact_list">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered" border="1" cellspacing="0" cellpadding="0" bordercolor="#ccc" style="border-collapse:collapse;">
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Status Flag </th>
+                            <th>% Complete</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>   
+                    <template for:each={records} for:item='mileItem'>
+                        <tr key={mileItem.Id}>
+                            <td><lightning-input type="radio" name="radioButtonSelect" value={mileItem.Id} onchange={onMileStoneSelection}></lightning-input></td>
+                            <td><div onclick={onNameClick} id={mileItem.Id} class="record-name">{mileItem.Name}</div></td>
+                            <td>{mileItem.Status__c}</td>
+                            <td><lightning-formatted-rich-text value={mileItem.Status_Flag__c} ></lightning-formatted-rich-text> </td>
+                            <td>{mileItem.Percentage_Complete__c}</td>
+                            <td>{mileItem.Due_Date__c}</td>
+                        </tr>
+                    </template>
+                </table>
+
+                
+            </lightning-card> 
+    </template>
+    
+ </template>

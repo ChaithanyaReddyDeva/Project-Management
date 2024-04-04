@@ -1,0 +1,58 @@
+<template>
+ <div class="slds-grid slds-gutters">
+  <div class="slds-col slds-size_2-of-3">
+       <lightning-card title="Projects" icon-name="standard:account">
+        <lightning-button-group  class="slds-float_right">
+            <lightning-button  label="Create New Project" onclick={cretaeProject} ></lightning-button>
+            <lightning-button label="Create Milestone" onclick={createMileStone}  ></lightning-button>
+            <lightning-button label="Create ToDo Items" onclick={createTodo}></lightning-button>
+            
+        </lightning-button-group>
+    
+       <table class="slds-table slds-table_cell-buffer slds-table_bordered" border="1" cellspacing="0" cellpadding="0" bordercolor="#ccc" style="border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Status Flag </th>
+                    <th>% Complete</th>
+                    <th>Description</th>                   
+                </tr>
+            </thead> 
+             <template for:each={prjData.data} for:item="prjItem">
+                 <tr key={prjItem.Id}>
+                     <td><lightning-input type="radio" name="radioButtonSelected" value={prjItem.Id} onchange={handleProjectSelection}></lightning-input></td>
+                     <td><div onclick={onNameClick} id={prjItem.Id} class="record-name">{prjItem.Name}</div></td>
+                     <td>{prjItem.Status__c}</td>
+                     <td>        <lightning-formatted-rich-text value={prjItem.Status_Flag__c} ></lightning-formatted-rich-text> </td>
+                     <td>{prjItem.Percentage_Complete__c}</td>
+                     <td>{prjItem.Description__c}</td>                    
+                 </tr>
+             </template>
+       </table>       
+       
+       <div class="slds-m-bottom--medium">
+         <c-lwc-mileston-on-project-id prj-id={selectedProjectId} onpassmilestoneid={onMilestoneSelection}></c-lwc-mileston-on-project-id>
+     </div>
+
+     <div class="slds-m-bottom--medium">
+        <c-lwc-todo-on-milestone-id milestone-id={selectedMilestoneId}></c-lwc-todo-on-milestone-id>
+    </div>
+    </lightning-card> 
+ 
+  </div>
+  <div class="slds-col slds-size_1-of-3">
+    <lightning-card title='Details'>
+      <div>
+
+        <canvas class="donut" style=" height:30vh; width:40vw" ></canvas>
+        </div>
+    </lightning-card>
+    
+  </div>
+</div>
+    
+ 
+    
+ </template>

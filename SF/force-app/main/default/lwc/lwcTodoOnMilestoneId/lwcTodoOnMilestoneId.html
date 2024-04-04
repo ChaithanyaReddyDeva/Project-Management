@@ -1,0 +1,20 @@
+<template>
+    <template if:true={showData}>
+        <lightning-card title="ToDo Info" icon-name="standard:task">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered" border="1" cellspacing="0" cellpadding="0" bordercolor="#ccc" style="border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>   
+                <template for:each={records} for:item='todoItem'>
+                    <tr key={todoItem.Id}>
+                        <td><div onclick={onNameClick} id={todoItem.Id} class="record-name">{todoItem.Name}</div></td>
+                        <td>{todoItem.Status__c}</td>
+                    </tr>
+                </template>
+            </table>
+        </lightning-card> 
+    </template>
+ </template>

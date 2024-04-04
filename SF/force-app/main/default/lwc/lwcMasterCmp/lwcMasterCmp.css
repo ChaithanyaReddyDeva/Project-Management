@@ -1,0 +1,11 @@
+.record-name{
+	color : blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.donut{
+    display: inline-block;
+    position: relative;
+    width: 10%;
+  }
